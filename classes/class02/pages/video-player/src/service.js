@@ -54,15 +54,22 @@ export default class Service {
       const leftEAR = this.#getEAR(upperLeft, lowerLeft);
 
       // True if the eye is closed
-      const blinked = leftEAR <= EAR_THRESHOLD && rightEAR <= EAR_THRESHOLD;
-      
-      if (!blinked) continue;
+      const leftBlinked = leftEAR <= EAR_THRESHOLD;
+      const rightBlinked = rightEAR <= EAR_THRESHOLD;
+
+      if (!leftBlinked && !rightBlinked) continue;
       if (!shouldRun()) continue;
 
-      return blinked;
+      return {
+        leftBlinked,
+        rightBlinked
+      }
     }
 
-    return false
+    return {
+      leftBlinked: false,
+      rightBlinked: false
+    }
   }
 
   #estimateFaces(video) {

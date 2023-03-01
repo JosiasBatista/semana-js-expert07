@@ -21,8 +21,8 @@ console.log('tf model loaded!');
 postMessage('READY');
 
 onmessage = async ({ data: video }) => {
-  const blinked = await service.handBlinked(video);
+  const { leftBlinked, rightBlinked } = await service.handBlinked(video);
 
-  if (!blinked) return;
-  postMessage({ blinked })
+  if (!leftBlinked && !rightBlinked) return;
+  postMessage({ leftBlinked, rightBlinked })
 }

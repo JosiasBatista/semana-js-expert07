@@ -30,11 +30,16 @@ export default class Controller {
         return;
       }
 
-      const blinked = data.blinked;
-      this.#blinkCounter += blinked;
+      const { leftBlinked, rightBlinked } = data;
+      if (leftBlinked && rightBlinked) return;
 
-      this.#view.togglePlayVideo();
-      console.log('blinked', blinked)
+      this.#blinkCounter += leftBlinked || rightBlinked;
+
+      if (leftBlinked) this.#view.togglePlayVideo();
+      if (rightBlinked) this.#view.togglePauseVideo();
+      
+      console.log('blinked left eye', leftBlinked);
+      console.log('blinked right eye', rightBlinked);
     }
 
     return {

@@ -16,13 +16,18 @@ export default class View {
     return this.#canvasContext.getImageData(0, 0, width, height);
   }
 
+  togglePauseVideo() {
+    if (!this.#videoElement.paused) {
+      this.#videoElement.pause();
+      return;
+    }
+  }
+
   togglePlayVideo() {
     if (this.#videoElement.paused) {
       this.#videoElement.play();
       return;
     }
-
-    this.#videoElement.pause();
   }
 
   enableButton() {
