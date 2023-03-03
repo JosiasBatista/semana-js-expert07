@@ -9,7 +9,7 @@ export default class Controller {
     this.#camera = camera;
     this.#worker = this.#configureWorker(worker);
 
-    this.#view.configureOnBtnClick(this.onBtnStart.bind(this))
+    this.#view.configureOnBtnClick(this.onBtnStart.bind(this));
   }
 
   static async initialize(deps) {
